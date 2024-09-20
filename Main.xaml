@@ -1,12 +1,11 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umao="clr-namespace:UiPath.Mail.Activities.Outlook;assembly=UiPath.Mail.Activities" xmlns:umat="clr-namespace:UiPath.Mail.Activities.Triggers;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:umao="clr-namespace:UiPath.Mail.Activities.Outlook;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
-    <x:Property Name="TriggerEventArgs" Type="InArgument(umat:MailEventInfo)" />
     <x:Property Name="BreakTriggerScopeInArgument" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>842.4,3438.4</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>842.4,2260</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -143,14 +142,10 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="588.8,3373.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="569.6,2195.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dt_Employee" />
-      <Variable x:TypeArguments="x:String" Name="FullPath">
-        <Variable.Default>
-          <VisualBasicValue x:TypeArguments="x:String" ExpressionText="System.IO.Directory.GetCurrentDirectory" />
-        </Variable.Default>
-      </Variable>
+      <Variable x:TypeArguments="x:String" Default="[System.IO.Directory.GetCurrentDirectory]" Name="FullPath" />
       <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="OutPutMail" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
@@ -158,54 +153,78 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <umao:OutlookMailMessagesTrigger BodyFilter="{x:Null}" Cc="{x:Null}" From="{x:Null}" To="{x:Null}" Account="sample@sample.com" BodyIsBuilderTabModified="False" BodyRegexOption="None" DisplayName="Outlook メール メッセージ トリガー" Enabled="True" sap:VirtualizedContainerService.HintSize="545.6,516.8" sap2010:WorkflowViewState.IdRef="OutlookMailMessagesTrigger_3" Importance="Any" MailFolder="受信トレイ" MarkAsRead="False" SchedulingMode="Sequential" SubjectBuilderPattern="新入社員情報登録依頼" SubjectFilter="新入社員情報登録依頼" SubjectIsBuilderTabModified="True" SubjectModel="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;カスタム&quot;,&quot;OperationValue&quot;:&quot;新入社員情報登録依頼&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;指定回数&quot;,&quot;QuantifierSecondValue&quot;:null}]" SubjectRegexOption="None" TriggerId="f533a9ee-b951-4da9-be55-bb8bf197a712" WhenOutlookIsClosed="Open">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-    </umao:OutlookMailMessagesTrigger>
-    <ui:GetOutlookMailMessages Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="sample@sample.com" DisplayName="Outlook メール メッセージを取得" GetAttachements="False" sap:VirtualizedContainerService.HintSize="545.6,56.8" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_3" MailFolder="受信トレイ" MarkAsRead="False" Messages="[OutPutMail]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Top="10" />
-    <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="繰り返し (コレクションの各要素) currentMailMessage" sap:VirtualizedContainerService.HintSize="545.6,733.6" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[OutPutMail]">
-      <ui:ForEach.Body>
-        <ActivityAction x:TypeArguments="snm:MailMessage">
-          <ActivityAction.Argument>
-            <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMailMessage" />
-          </ActivityAction.Argument>
-          <Sequence DisplayName="本文" sap:VirtualizedContainerService.HintSize="512,587.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
+    <ui:CommentOut sap2010:Annotation.AnnotationText="特定のワードを含むメールを検知し、実行" DisplayName="コメント アウト" sap:VirtualizedContainerService.HintSize="526.4,128.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut.Body>
+        <Sequence DisplayName="無視されるアクティビティ" sap:VirtualizedContainerService.HintSize="416,249.6" sap2010:WorkflowViewState.IdRef="Sequence_18">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <umao:OutlookMailMessagesTrigger BodyFilter="{x:Null}" Cc="{x:Null}" From="{x:Null}" To="{x:Null}" Account="sample@sample.com" BodyIsBuilderTabModified="False" BodyRegexOption="None" DisplayName="Outlook メール メッセージ トリガー" Enabled="True" sap:VirtualizedContainerService.HintSize="372.8,78.4" sap2010:WorkflowViewState.IdRef="OutlookMailMessagesTrigger_3" Importance="Any" MailFolder="受信トレイ" MarkAsRead="False" SchedulingMode="Sequential" SubjectBuilderPattern="新入社員情報登録依頼" SubjectFilter="新入社員情報登録依頼" SubjectIsBuilderTabModified="True" SubjectModel="[{&quot;Index&quot;:0,&quot;OperationID&quot;:&quot;ADV&quot;,&quot;OperationName&quot;:&quot;カスタム&quot;,&quot;OperationValue&quot;:&quot;新入社員情報登録依頼&quot;,&quot;QuantifierFirstValue&quot;:&quot;1&quot;,&quot;QuantifierID&quot;:&quot;EXT&quot;,&quot;QuantifierName&quot;:&quot;指定回数&quot;,&quot;QuantifierSecondValue&quot;:null}]" SubjectRegexOption="None" TriggerId="f533a9ee-b951-4da9-be55-bb8bf197a712" WhenOutlookIsClosed="Open">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <If Condition="[currentMailMessage.Subject.Contains(&quot;新入社員情報登録依頼&quot;)]" DisplayName="条件分岐 (if)" sap:VirtualizedContainerService.HintSize="449.6,498.4" sap2010:WorkflowViewState.IdRef="If_2">
-              <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,200" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          </umao:OutlookMailMessagesTrigger>
+          <ui:GetOutlookMailMessages Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="sample@sample.com" DisplayName="Outlook メール メッセージを取得" GetAttachements="False" sap:VirtualizedContainerService.HintSize="372.8,56.8" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_3" MailFolder="受信トレイ" MarkAsRead="False" Messages="[OutPutMail]" OnlyUnreadMessages="True" OrderByDate="NewestFirst" Top="10" />
+          <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="繰り返し (コレクションの各要素) currentMailMessage" sap:VirtualizedContainerService.HintSize="372.8,48" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[OutPutMail]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="snm:MailMessage">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMailMessage" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="本文" sap:VirtualizedContainerService.HintSize="512,587.2" sap2010:WorkflowViewState.IdRef="Sequence_15">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="添付ファイルを保存" ExcludeInlineAttachments="False" FolderPath="[FullPath+&quot;\従業員情報管理&quot;]" sap:VirtualizedContainerService.HintSize="353.6,111.2" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMailMessage]" OverwriteExisting="False" />
+                  <If Condition="[currentMailMessage.Subject.Contains(&quot;新入社員情報登録依頼&quot;)]" DisplayName="条件分岐 (if)" sap:VirtualizedContainerService.HintSize="449.6,498.4" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,200" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="添付ファイルを保存" ExcludeInlineAttachments="False" FolderPath="[FullPath+&quot;\従業員情報管理&quot;]" sap:VirtualizedContainerService.HintSize="353.6,111.2" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[currentMailMessage]" OverwriteExisting="False" />
+                      </Sequence>
+                    </If.Then>
+                    <If.Else>
+                      <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,136.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <ui:Break DisplayName="繰り返しを終了" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="Break_2" />
+                      </Sequence>
+                    </If.Else>
+                  </If>
                 </Sequence>
-              </If.Then>
-              <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,136.8" sap2010:WorkflowViewState.IdRef="Sequence_17">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:Break DisplayName="繰り返しを終了" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="Break_2" />
-                </Sequence>
-              </If.Else>
-            </If>
-          </Sequence>
-        </ActivityAction>
-      </ui:ForEach.Body>
-    </ui:ForEach>
-    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="アプリケーションを使用: 従業員管理システム" sap:VirtualizedContainerService.HintSize="545.6,2000" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" OpenMode="IfNotOpen" ScopeGuid="54771048-022a-4a1d-90c7-e68bf721c318" Version="V2" WindowResize="Restore">
+              </ActivityAction>
+            </ui:ForEach.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:ForEach>
+        </Sequence>
+      </ui:CommentOut.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:CommentOut>
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="アプリケーションを使用: 従業員管理システム" sap:VirtualizedContainerService.HintSize="526.4,2000" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" OpenMode="IfNotOpen" ScopeGuid="54771048-022a-4a1d-90c7-e68bf721c318" Version="V2" WindowResize="Restore">
       <uix:NApplicationCard.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
@@ -217,7 +236,7 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Employee]" DisplayName="従業員情報読込" sap:VirtualizedContainerService.HintSize="449.6,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" PreserveFormat="True" SheetName="従業員情報" WorkbookPath="従業員情報管理\従業員情報.xlsx" />
+            <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Employee]" DisplayName="従業員情報読込" sap:VirtualizedContainerService.HintSize="449.6,120" sap2010:WorkflowViewState.IdRef="ReadRange_1" PreserveFormat="True" SheetName="EmployeeInfo" WorkbookPath="EmployeeInfo\EmployeeInfo.xlsx" />
             <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Employee]" DisplayName="従業員情報を処理" sap:VirtualizedContainerService.HintSize="449.6,1497.6" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
@@ -232,10 +251,10 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="文字を入力 '社員名'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="353.6,250.4" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="54771048-022a-4a1d-90c7-e68bf721c318" Text="[CurrentEmployeeInfo(0).ToString]" Version="V4">
                       <uix:NTypeInto.Target>
-                        <uix:TargetAnchorable CVScreenId="09c97790-3034-4352-b0b2-ce236ae46ab9" CvElementArea="127, 216, 103, 29" CvType="InputBox" DesignTimeRectangle="129, 218, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="25aea39e-ca35-4f25-8bcc-27f77d184d88" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='従業員管理アプリ.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvElementArea="127, 216, 103, 29" CvType="InputBox" DesignTimeRectangle="129, 218, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="bbc7116d-fb3e-40f8-aece-c482bdb3be87" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='employeemanagement.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
                           <uix:TargetAnchorable.Anchors>
-                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                              <uix:Target CVScreenId="09c97790-3034-4352-b0b2-ce236ae46ab9" CvTextArea="30, 218, 51, 17" CvTextArgument="#Rg:" CvType="Text" DesignTimeRectangle="29, 218, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='社員名:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='社員名:' check:text='社員名:' /&gt;" Guid="d7fd71e4-317d-42dd-9b34-6f0e462af4f4" SearchSteps="Selector, FuzzySelector, CV" />
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvTextArea="31, 218, 50, 17" CvTextArgument="AS" CvType="Text" DesignTimeRectangle="29, 218, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='社員名:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='社員名:' check:text='社員名:' /&gt;" Guid="37df1fc0-0ac7-4ced-83ae-fc6897e80d10" SearchSteps="Selector, FuzzySelector, CV" />
                             </scg:List>
                           </uix:TargetAnchorable.Anchors>
                         </uix:TargetAnchorable>
@@ -243,10 +262,10 @@
                     </uix:NTypeInto>
                     <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="文字を入力 '部署'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="353.6,250.4" sap2010:WorkflowViewState.IdRef="NTypeInto_2" ScopeIdentifier="54771048-022a-4a1d-90c7-e68bf721c318" Text="[CurrentEmployeeInfo(5).ToString]" Version="V4">
                       <uix:NTypeInto.Target>
-                        <uix:TargetAnchorable CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvElementArea="127, 256, 103, 30" CvType="InputBox" DesignTimeRectangle="129, 258, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="6a62b5e0-be4f-4704-935a-b790ceed9e00" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='従業員管理アプリ.exe' ctrlname='Form1' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvElementArea="127, 256, 103, 30" CvType="InputBox" DesignTimeRectangle="129, 258, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="0781c831-bbb5-478b-a89f-6cdf5857123a" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='employeemanagement.exe' ctrlname='Form1' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
                           <uix:TargetAnchorable.Anchors>
-                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                              <uix:Target CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvTextArea="31, 258, 36, 17" CvTextArgument="BB¥:" CvType="Text" DesignTimeRectangle="29, 258, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='部署:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='部署:' check:text='部署:' /&gt;" Guid="b82b0fca-a504-434a-ab17-534207e12612" SearchSteps="Selector, FuzzySelector, CV" />
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvTextArea="31, 258, 36, 17" CvTextArgument="BB¥:" CvType="Text" DesignTimeRectangle="29, 258, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='部署:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='部署:' check:text='部署:' /&gt;" Guid="3b0d5dd3-de0f-4f1c-9f7d-273d711dfca4" SearchSteps="Selector, FuzzySelector, CV" />
                             </scg:List>
                           </uix:TargetAnchorable.Anchors>
                         </uix:TargetAnchorable>
@@ -254,10 +273,10 @@
                     </uix:NTypeInto>
                     <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="文字を入力 '役職'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="353.6,250.4" sap2010:WorkflowViewState.IdRef="NTypeInto_3" ScopeIdentifier="54771048-022a-4a1d-90c7-e68bf721c318" Text="[CurrentEmployeeInfo(6).ToString]" Version="V4">
                       <uix:NTypeInto.Target>
-                        <uix:TargetAnchorable CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvElementArea="127, 296, 103, 30" CvType="InputBox" DesignTimeRectangle="129, 298, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="b8bce2bf-becd-473b-a06d-69b378c0455f" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='従業員管理アプリ.exe' ctrlname='Form1' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvElementArea="127, 296, 103, 30" CvType="InputBox" DesignTimeRectangle="129, 298, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="5ad6fbc3-9c51-4982-b0f6-f0926907c64f" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='employeemanagement.exe' ctrlname='Form1' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
                           <uix:TargetAnchorable.Anchors>
-                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                              <uix:Target CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvTextArea="31, 298, 35, 17" CvTextArgument="R9a:" CvType="Text" DesignTimeRectangle="29, 298, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='役職:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='役職:' check:text='役職:' /&gt;" Guid="aa78a27e-8f02-464f-b7a6-b80ae748b64b" SearchSteps="Selector, FuzzySelector, CV" />
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvTextArea="31, 298, 35, 17" CvTextArgument="R9a:" CvType="Text" DesignTimeRectangle="29, 298, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='役職:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='役職:' check:text='役職:' /&gt;" Guid="0b8026e4-ce4c-4795-b5f0-16fd98483e45" SearchSteps="Selector, FuzzySelector, CV" />
                             </scg:List>
                           </uix:TargetAnchorable.Anchors>
                         </uix:TargetAnchorable>
@@ -265,10 +284,10 @@
                     </uix:NTypeInto>
                     <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="文字を入力 '入社日'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="353.6,250.4" sap2010:WorkflowViewState.IdRef="NTypeInto_4" ScopeIdentifier="54771048-022a-4a1d-90c7-e68bf721c318" Text="[CType(CurrentEmployeeInfo(4),System.Datetime).ToString(&quot;yyyy/M/d&quot;)]" Version="V4">
                       <uix:NTypeInto.Target>
-                        <uix:TargetAnchorable CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvElementArea="127, 336, 103, 30" CvType="InputBox" DesignTimeRectangle="129, 338, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="ca028bb0-73b8-4b30-9582-8514038d889b" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='従業員管理アプリ.exe' ctrlname='Form1' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvElementArea="127, 335, 103, 30" CvType="InputBox" DesignTimeRectangle="129, 338, 100, 27" DesignTimeScaleFactor="1.25" ElementType="InputBox" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Edit.*' /&gt;" Guid="349582da-520e-4152-a06e-5563c2f25367" IsResponsive="True" ScopeSelectorArgument="&lt;wnd app='employeemanagement.exe' ctrlname='Form1' /&gt;" SearchSteps="FuzzySelector, CV" Version="V4" Visibility="Interactive">
                           <uix:TargetAnchorable.Anchors>
-                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
-                              <uix:Target CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvTextArea="31, 338, 50, 17" CvTextArgument="A38:" CvType="Text" DesignTimeRectangle="29, 338, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='入社日:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='入社日:' check:text='入社日:' /&gt;" Guid="af5f3f42-4a02-426c-93ca-d22b70f063e5" SearchSteps="Selector, FuzzySelector, CV" />
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="4">
+                              <uix:Target CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvTextArea="31, 338, 50, 17" CvTextArgument="A38:" CvType="Text" DesignTimeRectangle="29, 338, 100, 23" ElementType="Text" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='入社日:' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Static.*' title='入社日:' check:text='入社日:' /&gt;" Guid="6c3211d3-8fbc-4bc6-b1b5-0b96f405f47e" SearchSteps="Selector, FuzzySelector, CV" />
                             </scg:List>
                           </uix:TargetAnchorable.Anchors>
                         </uix:TargetAnchorable>
@@ -276,7 +295,7 @@
                     </uix:NTypeInto>
                     <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="クリック '登録'" sap:VirtualizedContainerService.HintSize="353.6,216.8" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="54771048-022a-4a1d-90c7-e68bf721c318" Version="V4">
                       <uix:NClick.Target>
-                        <uix:TargetAnchorable CVScreenId="08a170b0-0ced-4231-8635-1edc42575183" CvElementArea="128, 376, 76, 25" CvTextArea="150, 382, 30, 15" CvTextArgument="86" CvType="Button" DesignTimeRectangle="129, 378, 75, 23" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Button.*' title='登録' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Button.*' title='登録' check:text='登録' /&gt;" Guid="c9ed3495-ff5c-40f1-8c4f-b9589a264231" ScopeSelectorArgument="&lt;wnd app='従業員管理アプリ.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
+                        <uix:TargetAnchorable CVScreenId="685ca445-8fc8-46a2-a08b-fbf4431cfb25" CvElementArea="128, 376, 76, 25" CvTextArea="150, 382, 30, 15" CvTextArgument="86" CvType="Button" DesignTimeRectangle="129, 378, 75, 23" DesignTimeScaleFactor="1.25" ElementType="Button" FullSelectorArgument="&lt;wnd cls='WindowsForms10.Button.*' title='登録' /&gt;" FuzzySelectorArgument="&lt;wnd cls='WindowsForms10.Button.*' title='登録' check:text='登録' /&gt;" Guid="f22ffbc3-82c0-4954-9d85-de04b8dda243" ScopeSelectorArgument="&lt;wnd app='employeemanagement.exe' ctrlname='Form1' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V4" Visibility="Interactive">
                           <uix:TargetAnchorable.Anchors>
                             <scg:List x:TypeArguments="uix:ITarget" Capacity="0" />
                           </uix:TargetAnchorable.Anchors>
@@ -301,7 +320,7 @@
         </ActivityAction>
       </uix:NApplicationCard.Body>
       <uix:NApplicationCard.TargetApp>
-        <uix:TargetApp Area="584, 448, 818, 497" FilePath="[FullPath+&quot;\従業員情報管理\従業員管理アプリ.exe&quot;]" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAABZSURBVDhP1cwxDsAgDANA3pb/vyerkYdIIXIVVDqU4QaM4wHgiAzJ3dFhTx4TC2b26GcDfCjqMPB/GVCFmmWXDHTagZpFzpvw3YCyPaDUsSz3lqM3ZLgPYwJ8BMgzsjwnNAAAAABJRU5ErkJggg==" sap2010:WorkflowViewState.IdRef="TargetApp_3" Selector="&lt;wnd app='従業員管理アプリ.exe' ctrlname='Form1' /&gt;" />
+        <uix:TargetApp Area="218, 162, 818, 501" FilePath="[FullPath+&quot;\EmployeeInfo\employeemanagement.exe&quot;]" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAABZSURBVDhP1cwxDsAgDANA3pb/vyerkYdIIXIVVDqU4QaM4wHgiAzJ3dFhTx4TC2b26GcDfCjqMPB/GVCFmmWXDHTagZpFzpvw3YCyPaDUsSz3lqM3ZLgPYwJ8BMgzsjwnNAAAAABJRU5ErkJggg==" sap2010:WorkflowViewState.IdRef="TargetApp_3" InformativeScreenshot="c189019d6f87052226c1b6583e86f1ee.png" Selector="&lt;wnd app='employeemanagement.exe' ctrlname='Form1' /&gt;" />
       </uix:NApplicationCard.TargetApp>
     </uix:NApplicationCard>
   </Sequence>
